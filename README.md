@@ -1,2 +1,6 @@
-# HomerServer
-A complete Docker-Compose Setup for A HomeServer
+# HomerServer - All-In-One Docker-Compose
+
+## Introduction ##
+
+
+
