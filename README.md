@@ -26,6 +26,8 @@ You will follow the same configuration steps.
 Once the container is running, just go the localhost:Port (sometimes, you will need to enter the acutal IP-adress e.g. 194.135.0.23:PORT) Your local IP is individual. You can get the IP-adress via command line. (ifconfig on MacOS)
 
 1) Settings -> Download-Client
-2) Add Transmissin (tipp: Use your IP-adress as url)
+2) Add Transmission (tipp: Use your IP-adress as url)
+3) Settings -> Indexer -> Tornznab
+4) Copy URL from Jackett
 
 
