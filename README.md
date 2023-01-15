@@ -22,4 +22,10 @@ Jackett works as a proxy server: it translates queries from apps (Sonarr, Radarr
 We will need Jackett for indexer configuration within Sonarr and Radarr.
 
 ### Sonarr (for TV-Shows) and Radarr (for Movies) ###
-Sonarr
+You will follow the same configuration steps.
+Once the container is running, just go the localhost:Port (sometimes, you will need to enter the acutal IP-adress e.g. 194.135.0.23:PORT) Your local IP is individual. You can get the IP-adress via command line. (ifconfig on MacOS)
+
+1) Settings -> Download-Client
+2) Add Transmissin (tipp: Use your IP-adress as url)
+
+
