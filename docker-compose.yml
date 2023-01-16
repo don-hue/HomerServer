@@ -1,0 +1,134 @@
+#  ____                                      __  __                            
+# /\  _` \                                  /\ \/\ \
+# \ \ \/\ \        ___         ___          \ \ \_\ \      __  __         __   
+#  \ \ \ \ \      / __`\     /' _ `\  _______\ \  _  \    /\ \/\ \      /'__`\ 
+#   \ \ \_\ \    /\ \L\ \    /\ \/\ \/\______\\ \ \ \ \   \ \ \_\ \    /\  __/ 
+#    \ \____/    \ \____/    \ \_\ \_\/______/ \ \_\ \_\   \ \____/    \ \____\
+#     \/___/      \/___/      \/_/\/_/          \/_/\/_/    \/___/      \/____/
+version: '3.3'
+services:
+#-------------Transmission as Download Client----------------
+  transmission-openvpn:
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /Volumes/MediaServer/config/Transmission:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/MediaServer/Data:/data
+    environment:
+      - PUID=1000
+      - PGID=1000 
+      - OPENVPN_PROVIDER= # Use our VPN Provider
+      - OPENVPN_CONFIG= # Choose Preferred Country e.g. france,sweden,austria,italy,belgium etc
+      - OPENVPN_USERNAME= # Your VPN Username
+      - OPENVPN_PASSWORD= # Your Password
+      - LOCAL_NETWORK= # Your Local Network IP
+      - TRANSMISSION_DOWNLOAD_DIR= # path of download directory in container e.g. /data/downloads
+#      default value is : /data/completed
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    ports:
+      - 9091:9091
+    image: haugene/transmission-openvpn
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Sonarr for TV-Series--------------------------
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+       - TZ=Europe/Berlin
+    volumes:
+      - /Volumes/MediaServer/config/Sonarr:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/MediaServer/Data/TV:/data/tv # an example
+      - /Volumes/MediaServer/Data/Downloads:/data/downloads # example
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Radarr for Movies-----------------------------
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin  
+    volumes:
+      - /Volumes/MediaServer/config/Radarr:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/MediaServer/Data/Downloads:/data/downloads
+      - /Volumes/MediaServer/Data/Movies:/data/movies
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Headphones for Music--------------------------
+  headphones:
+    image: lscr.io/linuxserver/headphones:latest
+    container_name: headphones
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /Volumes/Music/config:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/Music/Data:/data
+      - /Volumes/Music/Data/Music:/data/music
+    ports:
+      - 8181:8181
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Jackett Indexing------------------------------
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - AUTO_UPDATE=true #optional
+      - RUN_OPTS=<run options here> #optional
+    volumes:
+      - /Volumes/MediaServer/config/Jacket:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/MediaServer/Data/Downloads:/data/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Jellyfin for Media Streaming------------------
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    volumes:
+      - /Volumes/MediaServer/config/Jellyfin:/config # your/absolute/path/on/disk : /directory/in/container
+      - /Volumes/MediaServer/Data/TV:/data/tvshows
+      - /Volumes/MediaServer/Data/Movies:/data/movies
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+# ----------------------------------------------------------
+# ------------Jellyseer Search Automatation----------------
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Berlin
+    ports:
+      - 5055:5055
+    volumes:
+      - /Volumes/MediaServer/config/Overseer:/app/config # your/absolute/path/on/disk : /directory/in/container
+    restart: unless-stopped
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
