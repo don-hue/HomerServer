@@ -13,15 +13,15 @@ P.S. I choosed a Mac Mini because I love the fact that I cannot upgrade the stor
 ## Short Overview ##
 I am a copycat 🐈, I mean developer :shipit:
 
-### Trassmisison ###
-Transmission is a light-weight download-client. In this configuration, you can incorporate your VPN account, so that transmission dowload via a VPN connection. https://github.com/haugene/docker-transmission-openvpn
+### Trassmisison - https://github.com/haugene/docker-transmission-openvpn ###
+Transmission is a light-weight download-client. In this configuration, you can incorporate your VPN account, so that transmission dowload via a VPN connection. 
 
-### Jackett ###
-Jackett works as a proxy server: it translates queries from apps (Sonarr, Radarr, SickRage, CouchPotato, Mylar3, Lidarr, DuckieTV, qBittorrent, Nefarious etc.) into tracker-site-specific http queries, parses the html or json response, and then sends results back to the requesting software. https://github.com/Jackett/Jackett
+### Jackett - https://github.com/Jackett/Jackett###
+Jackett works as a proxy server: it translates queries from apps (Sonarr, Radarr, SickRage, CouchPotato, Mylar3, Lidarr, DuckieTV, qBittorrent, Nefarious etc.) into tracker-site-specific http queries, parses the html or json response, and then sends results back to the requesting software. 
 
 We will need Jackett for indexer configuration within Sonarr and Radarr.
 
-### Sonarr (for TV-Shows) and Radarr (for Movies) ###
+### Sonarr (for TV-Shows) and Radarr (for Movies) - https://github.com/linuxserver/docker-sonarr & https://github.com/linuxserver/docker-radarr ###
 You will follow the same configuration steps.
 Once the container is running, just go the localhost:Port (sometimes, you will need to enter the acutal IP-adress e.g. 194.135.0.23:PORT) Your local IP is individual. You can get the IP-adress via command line. (ifconfig on MacOS)
 
