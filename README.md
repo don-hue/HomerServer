@@ -28,6 +28,31 @@ Once the container is running, just go the localhost:Port (sometimes, you will n
 1) Settings -> Download-Client
 2) Add Transmission (tipp: Use your IP-adress as url)
 3) Settings -> Indexer -> Tornznab
-4) Copy URL from Jackett
+4) Copy URL from Jackett and paste it to Sonarr/Radarr
+5) Copy API-Key from Jackett
 
+Pro Tipp: Setting -> Media Management -> enable: create subfolder for Series. 
+-> Sonarr will create a subfolder and organize your TV series by Name. 
 
+### Jellyfin - Your Media Streamer ###
+I prefer Jellyfin over Kodi as Jellyfin is built for streaming whereas Kodi is not. 
+
+Jellyfin is actually pretty easy peazy to setup. Just follow the instructions. 
+
+Pro tipp: You don't have to use a password. And honestly, it is easier. But if you like to Edward Snowden your own local network, I guess feel free to set a password that you will forget within the moment you made it. 
+ gg :rage4:
+
+Once Jellyfin is running on your Homeserver, you can basically connect any device that you want to watch your media on via the localhost:8086 e.g. A fireTV stick. 
+
+### Jellyseer - The Overlord is watching ###
+Now, go full sunglasses fabio look, smirk like you know something others don't and buckle up those ass cheeekss :godmode:
+
+If Jellyfin is the bread and butter, Jellyseer is the topping. 
+
+Jellyseer basically is a proxy-server that puts forward your search request to Sonarr and Radarr combined with a super nice UI that acutally gives you information and recommendations. Noise 🪗
+
+## Paths - Get your head arround it :shipit: ##
+If you are new to docker and container, there are some things you need to know. 
+
+1) every container needs persmissions. 
+2) there are directory path on YOUR machine and directory path WIHTIN the container. 
